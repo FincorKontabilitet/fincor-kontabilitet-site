@@ -1,0 +1,123 @@
+@import 'tailwindcss' source('../');
+
+@theme {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'Manrope', 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', Menlo, monospace;
+
+  --color-paper: #f3f1ec;
+  --color-paper-2: #e8e6df;
+  --color-card: #fbfaf7;
+  --color-ink: #152033;
+  --color-navy: #14284b;
+  --color-navy-2: #1f3a66;
+  --color-teal: #0b7a74;
+  --color-teal-soft: #9fdcd5;
+  --color-muted: #566173;
+  --color-line: #d3d3cb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-teal-soft);
+}
+
+/* Faint ledger ruling used as section texture */
+.ledger-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgb(20 40 75 / 0.07) 31px,
+    rgb(20 40 75 / 0.07) 32px
+  );
+}
+
+/* Fixed grain overlay (non-interactive) */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.eyebrow {
+  @apply font-mono text-xs uppercase tracking-[0.18em] text-teal;
+}
+
+.form-label {
+  @apply block text-sm font-semibold mb-2 text-ink;
+}
+
+.form-input {
+  @apply w-full rounded-md border border-line bg-card px-4 py-3 text-ink placeholder:text-muted/60 transition-colors focus:border-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy;
+}
+
+.action {
+  @apply inline-flex items-center gap-2 rounded-full bg-navy px-6 py-3 font-semibold text-paper transition-all hover:bg-navy-2 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy disabled:cursor-wait disabled:opacity-70;
+}
+
+.action-ghost {
+  @apply inline-flex items-center gap-2 rounded-full border border-ink/25 px-6 py-3 font-semibold text-ink transition-colors hover:border-ink hover:bg-ink/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy;
+}
+
+.link-underline {
+  @apply underline decoration-teal/50 decoration-2 underline-offset-4 transition-colors hover:decoration-teal;
+}
+
+/* Page-load reveal */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes tick {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.tick {
+  animation: tick 0.35s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .tick {
+    animation: none;
+  }
+}
