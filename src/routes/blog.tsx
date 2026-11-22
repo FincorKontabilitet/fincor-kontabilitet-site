@@ -32,10 +32,13 @@ function BlogPage() {
         <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-amber-400">
           FINCOR
         </p>
+
         <h1 className="text-4xl font-bold">Blogu FINCOR</h1>
+
         <p className="mx-auto mt-4 max-w-2xl text-slate-300">
           Informacione, këshilla dhe përditësime për biznesin,
           kontabilitetin, tatimet dhe financat.
+          Zgjidhje profesionale për biznesin tuaj.
         </p>
       </header>
 
@@ -48,12 +51,15 @@ function BlogPage() {
             <p className="text-sm font-semibold text-amber-600">
               {article.category}
             </p>
+
             <h2 className="mt-3 text-xl font-bold text-slate-900">
               {article.title}
             </h2>
+
             <p className="mt-3 text-sm text-slate-600">
               {article.description}
             </p>
+
             <p className="mt-5 text-xs text-slate-400">
               {article.date}
             </p>
