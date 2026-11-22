@@ -1,1 +1,1 @@
-export const blogArticles = [];
+export const blogArticles: { title: string }[] = []
